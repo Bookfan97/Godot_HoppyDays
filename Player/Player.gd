@@ -6,10 +6,13 @@ const GRAVITY = 300
 const UP = Vector2(0, -1) 
 const JUMP_SPEED = 3000
 
+signal animate
+
 func _physics_process(delta):
 	apply_gravity()
 	jump()
 	move()
+	animate()
 	move_and_slide(motion, UP)
 
 func apply_gravity():
@@ -29,3 +32,6 @@ func move():
 		motion.x = SPEED
 	else:
 		motion.x = 0
+
+func animate():
+	emit_signal("animate", motion)
